@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Budget Data</title>
+</head>
+<body>
+<div>
+    <h2>List Budget Data</h2>
+    <hr/>
+    <table border="1">
+
+        <thead>
+        <tr>
+            <!--th -> header, tr -> row,ez tulajdonképpen az első header lefellső sor beállítása-->
+            <th>Felsorolni az oszlopokat headerjét</th>
+            <th>Felsorolni az oszlopokat</th>
+            <th>Felsorolni az oszlopokat</th>
+            <th>Felsorolni az oszlopokat</th>
+            <th>Felsorolni az oszlopokat</th>
+            <th>Felsorolni az oszlopokat</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!--Itt alább a budgetDatat nem tudom, hogy pontosan micsoda-->
+        <tr th:each="budgetData: ${budgetRecords}">
+            <!--Ezek a lentiek elvileg a placeholdereia a különböző oszlopok adatainak, ezt még kitalálni, hgo -->
+            <td th:text="${budgetRecord.id}"></td>
+            <td th:text="${budgetRecord.bejovo_kimeno}"></td>
+            <td th:text="${budgetRecord.stb}"></td>
+            <td th:text="${budgetRecord.stb}"></td>
+            <td th:text="${budgetRecord.stb}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
