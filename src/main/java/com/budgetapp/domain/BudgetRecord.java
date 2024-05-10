@@ -1,6 +1,6 @@
 package com.budgetapp.domain;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,11 +12,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class BudgetRecord {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) //Ide majd ki kell találni, hogy mi lenne a megfelelő
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO) //Ide majd ki kell találni, hogy mi lenne a megfelelő, sok más helyen IDENTITY van
+//    @Column(name = "id")
     private Integer id;
 
     @Column(name = "tranzakcio_datuma")
