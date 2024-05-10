@@ -16,23 +16,28 @@
         <thead>
         <tr>
             <!--th -> header, tr -> row,ez tulajdonképpen az első header lefellső sor beállítása-->
-            <th>Felsorolni az oszlopokat headerjét</th>
-            <th>Felsorolni az oszlopokat</th>
-            <th>Felsorolni az oszlopokat</th>
-            <th>Felsorolni az oszlopokat</th>
-            <th>Felsorolni az oszlopokat</th>
-            <th>Felsorolni az oszlopokat</th>
+            <th>Id</th>
+            <th>Tranzakció dátuma</th>
+            <th>Bejövő/kimenő</th>
+            <th>Partner neve</th>
+            <th>Költési kategória</th>
+            <th>Számla név</th>
+            <th>Összeg</th>
+            <th>Megjegyzés</th>
         </tr>
         </thead>
         <tbody>
         <!--Itt alább a budgetDatat nem tudom, hogy pontosan micsoda-->
-        <tr th:each="budgetData: ${budgetRecords}">
+        <tr th:each="budgetRecord: ${budgetRecords}">
             <!--Ezek a lentiek elvileg a placeholdereia a különböző oszlopok adatainak, ezt még kitalálni, hgo -->
             <td th:text="${budgetRecord.id}"></td>
-            <td th:text="${budgetRecord.bejovo_kimeno}"></td>
-            <td th:text="${budgetRecord.stb}"></td>
-            <td th:text="${budgetRecord.stb}"></td>
-            <td th:text="${budgetRecord.stb}"></td>
+            <td th:text="${budgetRecord.tranzakcioDatuma}"></td>
+            <td th:text="${budgetRecord.bejovoKimeno}"></td>
+            <td th:text="${budgetRecord.partnerNeve}"></td>
+            <td th:text="${budgetRecord.koltesiKategoria}"></td>
+            <td th:text="${budgetRecord.szamlaNev}"></td>
+            <td th:text="${budgetRecord.osszeg}"></td>
+            <td th:text="${budgetRecord.megjegyzes}"></td>
         </tr>
         </tbody>
     </table>
