@@ -2,11 +2,16 @@ package com.budgetapp.filehandler;
 
 import com.budgetapp.domain.BudgetRecord;
 import com.budgetapp.exception.ColumnNameValidationException;
+import com.budgetapp.repository.BudgetRecordRepository;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.regeni.service.DataCleanerService;
+//import org.regeni.service.DataCleanerService;
+//import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
+import org.springframework.stereotype.Component;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -16,17 +21,27 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
+@Component //Ezt csak kikoskodtam, hogy valószínűleg kelleni fog ide
 public class XlsxReader {
 
-    DataCleanerService dataCleanerService = new DataCleanerService();
+//    DataCleanerService dataCleanerService = new DataCleanerService();
+    //Hát ebben egyáltalán nem vagyok biztos, hogy ígxy működni fog, de mindjárt kiderül
+    private final BudgetRecordRepository budgetDataRepository;
 
-    public XlsxReader() {
+    public XlsxReader(BudgetRecordRepository budgetDataRepository) {
+        this.budgetDataRepository = budgetDataRepository;
     }
 
+//    public XlsxReader(BudgetRecordRepository budgetDataRepository) {
+//        this.budgetDataRepository = budgetDataRepository;
+//    }
+
+    //Ez elvileg megmondja, hogy akkor fusson le a kód, miután a program elindult.
+@EventListener(ApplicationReadyEvent.class)
     public void budgetDataCleaner() throws IOException {
         FileInputStream file;
         try {
-            file = new FileInputStream("teszt_tranzakciok_user1.xlsx");
+            file = new FileInputStream("teszt_tranzakciok.xlsx");
         } catch (FileNotFoundException ex) {
             throw new RuntimeException(ex);
         }
@@ -60,7 +75,8 @@ public class XlsxReader {
                 Cell cell = cellIterator.next();
                 persistRecord(cell.getColumnIndex(), cell, budgetRecord);
             }
-            dataCleanerService.persistMonthlyBudget(budgetRecord);
+//            dataCleanerService.persistMonthlyBudget(budgetRecord);
+            budgetDataRepository.save(budgetRecord);
         }
         wb.close();
         file.close();
