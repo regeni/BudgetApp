@@ -27,9 +27,8 @@
         </tr>
         </thead>
         <tbody>
-        <!--Itt alább a budgetDatat nem tudom, hogy pontosan micsoda-->
+        <!--Végigiterál a BudgetRecordController class showBudgetData() metódusából visszakapott listán-->
         <tr th:each="budgetRecord: ${budgetRecords}">
-            <!--Ezek a lentiek elvileg a placeholdereia a különböző oszlopok adatainak, ezt még kitalálni, hgo -->
             <td th:text="${budgetRecord.id}"></td>
             <td th:text="${budgetRecord.tranzakcioDatuma}"></td>
             <td th:text="${budgetRecord.bejovoKimeno}"></td>

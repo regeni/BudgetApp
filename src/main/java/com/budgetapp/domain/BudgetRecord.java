@@ -5,8 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-//TODO Átalakítani Spring Boot/Lombok verzióra
-
 @Entity
 @Table(name = "all_budget_records")
 @Data
