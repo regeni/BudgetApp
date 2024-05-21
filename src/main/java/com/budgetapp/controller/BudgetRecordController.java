@@ -27,7 +27,7 @@ public class BudgetRecordController {
     @GetMapping({"/budget-data", "/", "/list"})
 //    @GetMapping("/")
     public ModelAndView showBudgetData() {
-        ModelAndView modelAndView = new ModelAndView("budget-data");
+        ModelAndView modelAndView = new ModelAndView("budget-data"); // Ez a budget-data.html-re utal, erre hozza létre
         List<BudgetRecord> budgetRecords = budgetDataRepository.findAll();
         modelAndView.addObject("budgetRecords", budgetRecords);
         return modelAndView;
