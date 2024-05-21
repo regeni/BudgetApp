@@ -37,6 +37,14 @@
             <td th:text="${budgetRecord.szamlaNev}"></td>
             <td th:text="${budgetRecord.osszeg}"></td>
             <td th:text="${budgetRecord.megjegyzes}"></td>
+            <td>
+                <!-- Edit button -->
+                <a th:href="@{/budget-records/edit/{id}(id=${budgetRecord.id})}">Edit</a>
+                <!-- Delete button -->
+                <form th:action="@{/budget-records/delete/{id}(id=${budgetRecord.id})}" method="post" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
         </tr>
         </tbody>
     </table>

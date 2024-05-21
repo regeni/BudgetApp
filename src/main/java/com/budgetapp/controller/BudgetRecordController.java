@@ -4,7 +4,9 @@ import com.budgetapp.domain.BudgetRecord;
 import com.budgetapp.repository.BudgetRecordRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -29,6 +31,17 @@ public class BudgetRecordController {
         modelAndView.addObject("budgetRecords", budgetRecords);
         return modelAndView;
     }
+
+    //Szerintem itt nem egy string-et kellene visszaadnia, hanem a db-ben kellene valami szerkesztés
+    @GetMapping("/budget-data/edit/{id}")
+    public String showEditBudgetData(@PathVariable Integer id, Model model) {
+        BudgetRecord budgetRecord = budgetDataRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid budget record Id:" + id));
+        model.addAttribute("budgetRecord", budgetRecord);
+        return "edit-budget-data"; // Ensure this template exists
+
+    }
+
 
 }
 
