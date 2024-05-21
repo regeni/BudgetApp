@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -32,16 +33,27 @@ public class BudgetRecordController {
         return modelAndView;
     }
 
-    //Szerintem itt nem egy string-et kellene visszaadnia, hanem a db-ben kellene valami szerkesztés
     @GetMapping("/budget-data/edit/{id}")
     public String showEditBudgetData(@PathVariable Integer id, Model model) {
         BudgetRecord budgetRecord = budgetDataRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid budget record Id:" + id));
         model.addAttribute("budgetRecord", budgetRecord);
-        return "edit-budget-data"; // Ensure this template exists
-
+        return "edit-budget-data"; // Átvisz az edit-budget-data.html oldalra, ezt a Thymeleaf kezeli így Stringként
     }
 
+    @PostMapping("/budget-data/update")
+    public String updateBudgetRecord(BudgetRecord budgetRecord) {
+        budgetDataRepository.save(budgetRecord);
+        return "redirect:/budget-data"; // Visszavisz a budget-data.html oldalra, thymeleaf kezeli ezt, ezért kell a String
+    }
+
+    @PostMapping("/budget-data/delete/{id}")
+    public String deleteBudgetRecord(@PathVariable Integer id) {
+        BudgetRecord budgetRecord = budgetDataRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid budget record Id:" + id));
+        budgetDataRepository.delete(budgetRecord);
+        return "redirect:/budget-data";
+    }
 
 }
 

@@ -1,10 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Edit Budget Data</title>
 </head>
 <body>
-
+<div>
+    <h2>Edit Budget Data</h2>
+    <form th:action="@{/budget-data/update}" th:object="${budgetRecord}" method="post">
+        <input type="hidden" th:field="*{id}"/>
+        <div>
+            <label for="tranzakcioDatuma">Tranzakció Dátuma:</label>
+            <input type="text" id="tranzakcioDatuma" th:field="*{tranzakcioDatuma}"/>
+        </div>
+        <div>
+            <label for="bejovoKimeno">Bejövő/Kimenő:</label>
+            <input type="text" id="bejovoKimeno" th:field="*{bejovoKimeno}"/>
+        </div>
+        <div>
+            <label for="partnerNeve">Partner Neve:</label>
+            <input type="text" id="partnerNeve" th:field="*{partnerNeve}"/>
+        </div>
+        <div>
+            <label for="koltesiKategoria">Költési Kategória:</label>
+            <input type="text" id="koltesiKategoria" th:field="*{koltesiKategoria}"/>
+        </div>
+        <div>
+            <label for="szamlaNev">Számla Név:</label>
+            <input type="text" id="szamlaNev" th:field="*{szamlaNev}"/>
+        </div>
+        <div>
+            <label for="osszeg">Összeg:</label>
+            <input type="text" id="osszeg" th:field="*{osszeg}"/>
+        </div>
+        <div>
+            <label for="megjegyzes">Megjegyzés:</label>
+            <input type="text" id="megjegyzes" th:field="*{megjegyzes}"/>
+        </div>
+        <div>
+            <button type="submit">Save</button>
+        </div>
+    </form>
+</div>
 </body>
 </html>
