@@ -14,8 +14,7 @@ import lombok.NoArgsConstructor;
 public class BudgetRecord {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) //Ide majd ki kell találni, hogy mi lenne a megfelelő, sok más helyen IDENTITY van
-//    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Column(name = "tranzakcio_datuma")

@@ -15,7 +15,6 @@
 
         <thead>
         <tr>
-            <!--th -> header, tr -> row,ez tulajdonképpen az első header lefellső sor beállítása-->
             <th>Id</th>
             <th>Tranzakció dátuma</th>
             <th>Bejövő/kimenő</th>
@@ -28,7 +27,6 @@
         </tr>
         </thead>
         <tbody>
-        <!--Végigiterál a BudgetRecordController class showBudgetData() metódusából visszakapott listán-->
         <tr th:each="budgetRecord: ${budgetRecords}">
             <td th:text="${budgetRecord.id}"></td>
             <td th:text="${budgetRecord.tranzakcioDatuma}"></td>
@@ -39,9 +37,7 @@
             <td th:text="${budgetRecord.osszeg}"></td>
             <td th:text="${budgetRecord.megjegyzes}"></td>
             <td>
-                <!-- Edit button -->
                 <a th:href="@{/budget-data/edit/{id}(id=${budgetRecord.id})}">Edit</a>
-                <!-- Delete button -->
                 <form th:action="@{/budget-data/delete/{id}(id=${budgetRecord.id})}" method="post" style="display:inline;">
                     <button type="submit">Delete</button>
                 </form>
